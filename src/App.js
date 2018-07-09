@@ -11,18 +11,15 @@ class App extends Component {
         persons: [
             {name: 'Olwen', age: 28},
             {name: 'Stefan', age: 29},
-        ],
-        otherData: SomeOtherObj
+        ]
     }
 
 
     /* Protects from global scope of this */
-    switchNameHandler = () => {
-        console.log("was] clicked!");
-        // ~DOnt do this!! this.state.persons[0].name = "Soooomething";
+    switchNameHandler = (newName) => {
         this.setState({persons: [
-                {name: 'Olwen Shannon', age: 29},
-                {name: 'Stefan Cross', age: 30},
+                {name: newName, age: 29},
+                {name: 'Stefan', age: 30},
             ]})
     }
 
@@ -36,10 +33,21 @@ class App extends Component {
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
-                {/* note not switchNameHandler with out (), else would execute on render */}
-                <button onClick={this.switchNameHandler}>Switch name</button>
-                <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-                <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>
+                {/*
+                note not switchNameHandler with out (), else would execute on render
+
+                (event) => return // implicit
+
+                Bind syntax preferred for performance
+                */}
+                <button onClick={ () => this.switchNameHandler('FOOO!') }>Switch name</button>
+                <Person
+                    name={this.state.persons[0].name}
+                    age={this.state.persons[0].age} />
+                <Person
+                    name={this.state.persons[1].name}
+                    age={this.state.persons[1].age}
+                    click={this.switchNameHandler.bind(this, 'Bar')} >
                     Foods: Salads, Vegetables
                 </Person>
             </div>
