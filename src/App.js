@@ -9,8 +9,8 @@ class App extends Component {
     // Managed from inside the component, only available when extending component
     state = {
         persons: [
-            {name: 'Olwen', age: 28},
-            {name: 'Stefan', age: 29},
+            {id: 1, name: 'Olwen', age: 28},
+            {id: 2, name: 'Stefan', age: 29},
         ],
         showPersons: false
     }
@@ -60,7 +60,10 @@ class App extends Component {
                         return <Person
                             click={ () => this.deletePersonHandler(index) }
                             name={person.name}
-                            age={person.age}/>
+                            age={person.age}
+                            // Key is used to enable react to efficiently read DOM and map changes from future to past state
+                            key={person.id}
+                        />
                     })}
                 </div>
             );
