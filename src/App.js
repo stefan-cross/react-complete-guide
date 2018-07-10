@@ -36,6 +36,10 @@ class App extends Component {
         this.setState({showPersons: !doesShow})
     };
 
+    /*
+    Everything within render, takes latest state, renders nothing or persons
+    Persons is set more elegantly that with previous tenery conditional content
+     */
     render() {
 
         const style = {
@@ -44,6 +48,25 @@ class App extends Component {
             border: '1px solid blue',
             padding: '8px',
             cursor: 'pointer'
+        }
+
+        let persons = null;
+
+        if(this.state.showPersons) {
+            persons = (
+                <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age} />
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                        click={this.switchNameHandler.bind(this, 'Bar')}
+                        changed={this.nameChangedHandler}>
+                        Foods: Salads, Vegetables
+                    </Person>
+                </div>
+            );
         }
 
         return (
@@ -60,21 +83,9 @@ class App extends Component {
                     onClick={ this.togglePersonsHandler }>
                     Toggle Person
                 </button>
-                {/* note the difference to directives in angular and vue, using ternary expression */}
-                { this.state.showPersons ?
-                    <div>
-                    <Person
-                        name={this.state.persons[0].name}
-                        age={this.state.persons[0].age} />
-                    <Person
-                        name={this.state.persons[1].name}
-                        age={this.state.persons[1].age}
-                        click={this.switchNameHandler.bind(this, 'Bar')}
-                        changed={this.nameChangedHandler}>
-                        Foods: Salads, Vegetables
-                    </Person>
-                </div> : null }
-                {/* note the above null for the other ternary operator condition */}
+
+                {persons}
+
             </div>
         );
     }
