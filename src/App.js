@@ -31,6 +31,15 @@ class App extends Component {
     }
 
     render() {
+
+        const style = {
+            backgroundColor: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer'
+        }
+
         return (
             <div className="App">
                 <header className="App-header">
@@ -41,13 +50,13 @@ class App extends Component {
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
                 {/*
-                note not switchNameHandler with out (), else would execute on render
-
-                (event) => return // implicit
-
-                Bind syntax preferred for performance
+                note the inline styling
                 */}
-                <button onClick={ () => this.switchNameHandler('FOOO!') }>Switch name</button>
+                <button
+                    style={style}
+                    onClick={ () => this.switchNameHandler('FOOO!') }>
+                    Switch name
+                </button>
                 <Person
                     name={this.state.persons[0].name}
                     age={this.state.persons[0].age} />
