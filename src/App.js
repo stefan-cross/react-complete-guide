@@ -16,11 +16,25 @@ class App extends Component {
     }
 
 
-    nameChangedHandler  = (event) => {
-        this.setState({persons: [
-                {name: 'Olwen', age: 29},
-                {name: event.target.value , age: 30},
-        ]})
+    nameChangedHandler  = (event, id) => {
+
+        const personIndex = this.state.persons.findIndex(p => {
+            return p.id === id;
+        });
+
+        // Use spread operator to create new value of persons, avoids mutability by copying contents
+        const person = {
+            ...this.state.persons[personIndex]
+        }
+
+        // Now we can update as working with copy
+        person.name = event.target.value;
+
+        const persons = [...this.state.persons];
+        persons[personIndex] = person;
+
+        // now we can set state to our copied and modified persons list
+        this.setState({persons: persons})
     }
 
     // Update state in an immutable fashion!
@@ -63,6 +77,7 @@ class App extends Component {
                             age={person.age}
                             // Key is used to enable react to efficiently read DOM and map changes from future to past state
                             key={person.id}
+                            changed={(event) => this.nameChangedHandler(event, person.id)}
                         />
                     })}
                 </div>
