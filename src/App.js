@@ -23,8 +23,10 @@ class App extends Component {
         ]})
     }
 
+    // Update state in an immutable fashion!
     deletePersonHandler = (personIndex) => {
-        const persons = this.state.persons;
+        //const persons = this.state.persons.splice(); // make protective copy
+        const persons = [...this.state.persons]; // new ES6 spread takes objs and makes copy
         persons.splice(personIndex, 1);
         this.setState({persons: persons})
 
