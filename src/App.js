@@ -51,26 +51,10 @@ class App extends Component {
         this.setState({showPersons: !doesShow})
     };
 
-    /*
-    Everything within render, takes latest state, renders nothing or persons
-    Persons is set more elegantly that with previous tenery conditional content
-     */
     render() {
 
-        const style = {
-            backgroundColor: 'green',
-            color: 'white',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer',
-            ':hover' : {
-                backgroundColor: 'lightgreen',
-                color: 'black'
-            } // Pseudo selector from Radium
-        };
-
         let persons = null;
+        let btnClass = '';
 
         if(this.state.showPersons) {
             persons = (
@@ -87,11 +71,7 @@ class App extends Component {
                     })}
                 </div>
             );
-            style.backgroundColor = 'red';
-            style[':hover']  = {
-                backgroundColor: 'salmon',
-                    color: 'black'
-            }
+            btnClass = classes.Red;
         }
 
         // Program logic to set classes
@@ -108,7 +88,7 @@ class App extends Component {
 
                 <p className={assignedClasses.join(' ')}>THIS IS WORKING</p>
                 <button
-                    style={style}
+                    className={btnClass}
                     onClick={ this.togglePersonsHandler }>
                     Toggle Person
                 </button>
