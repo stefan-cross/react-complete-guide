@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium, {StyleRoot} from 'radium';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
@@ -59,11 +60,16 @@ class App extends Component {
 
         const style = {
             backgroundColor: 'green',
+            color: 'white',
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
-            cursor: 'pointer'
-        }
+            cursor: 'pointer',
+            ':hover' : {
+                backgroundColor: 'lightgreen',
+                color: 'black'
+            } // sudo selector from Radium
+        };
 
         let persons = null;
 
@@ -83,6 +89,10 @@ class App extends Component {
                 </div>
             );
             style.backgroundColor = 'red';
+            style[':hover']  = {
+                backgroundColor: 'salmon',
+                    color: 'black'
+            }
         }
 
         // Program logic to set classes
@@ -95,6 +105,7 @@ class App extends Component {
         }
 
         return (
+            <StyleRoot>
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
@@ -113,9 +124,11 @@ class App extends Component {
                 {persons}
 
             </div>
+            </StyleRoot>
         );
         // return React.createElement('div', {className: 'App'}, React ..)
     }
 }
 
-export default App;
+// Higher order component, wrapping and injecting functionality
+export default Radium(App);
