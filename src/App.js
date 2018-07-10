@@ -85,6 +85,15 @@ class App extends Component {
             style.backgroundColor = 'red';
         }
 
+        // Program logic to set classes
+        const classes = [];
+        if(this.state.persons.length <= 1) {
+            classes.push('red');
+        }
+        if (this.state.persons.length <= 0) {
+            classes.push('bold');
+        }
+
         return (
             <div className="App">
                 <header className="App-header">
@@ -94,6 +103,7 @@ class App extends Component {
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
+                <p className={classes.join(' ')}>THIS IS WORKING</p>
                 <button
                     style={style}
                     onClick={ this.togglePersonsHandler }>
