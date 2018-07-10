@@ -11,7 +11,8 @@ class App extends Component {
         persons: [
             {name: 'Olwen', age: 28},
             {name: 'Stefan', age: 29},
-        ]
+        ],
+        showPersons: false
     }
 
 
@@ -29,6 +30,11 @@ class App extends Component {
                 {name: event.target.value , age: 30},
         ]})
     }
+
+    togglePersonsHandler = () => {
+        const doesShow = this.state.showPersons;
+        this.setState({showPersons: !doesShow})
+    };
 
     render() {
 
@@ -49,24 +55,26 @@ class App extends Component {
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </p>
-                {/*
-                note the inline styling
-                */}
                 <button
                     style={style}
-                    onClick={ () => this.switchNameHandler('FOOO!') }>
-                    Switch name
+                    onClick={ this.togglePersonsHandler }>
+                    Toggle Person
                 </button>
-                <Person
-                    name={this.state.persons[0].name}
-                    age={this.state.persons[0].age} />
-                <Person
-                    name={this.state.persons[1].name}
-                    age={this.state.persons[1].age}
-                    click={this.switchNameHandler.bind(this, 'Bar')}
-                    changed={this.nameChangedHandler}>
-                    Foods: Salads, Vegetables
-                </Person>
+                {/* note the difference to directives in angular and vue, using ternary expression */}
+                { this.state.showPersons ?
+                    <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age} />
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                        click={this.switchNameHandler.bind(this, 'Bar')}
+                        changed={this.nameChangedHandler}>
+                        Foods: Salads, Vegetables
+                    </Person>
+                </div> : null }
+                {/* note the above null for the other ternary operator condition */}
             </div>
         );
     }
