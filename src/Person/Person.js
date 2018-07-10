@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
-import Radium from 'radium';
 
-import './Person.css';
+import classes from './Person.css';
 
 // Props are passed in
 const person = (props) => {
 
-    const style = {
-        '@media (max-width: 500px)': {
-            width: '450px',
-            backgroundColor: 'red'
-        }
-    }
-
     return (
-        <div className="Person" style={style}>
+        <div className={classes.Person} >
             <p onClick={props.click}>I'm {props.name} and I am {props.age} years of youth!</p>
             <p>{props.children}</p>
             {/* the value now adds two way binding, console will error for other field without onChange added */}
@@ -23,4 +15,4 @@ const person = (props) => {
     )
 };
 
-export default Radium(person);
+export default person;

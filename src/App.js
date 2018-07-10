@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Radium, {StyleRoot} from 'radium';
 import logo from './logo.svg';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 
@@ -68,7 +67,7 @@ class App extends Component {
             ':hover' : {
                 backgroundColor: 'lightgreen',
                 color: 'black'
-            } // sudo selector from Radium
+            } // Pseudo selector from Radium
         };
 
         let persons = null;
@@ -96,25 +95,18 @@ class App extends Component {
         }
 
         // Program logic to set classes
-        const classes = [];
+        const assignedClasses = [];
         if(this.state.persons.length <= 1) {
-            classes.push('red');
+            assignedClasses.push(assignedClasses.red);
         }
         if (this.state.persons.length <= 0) {
-            classes.push('bold');
+            assignedClasses.push(assignedClasses.bold);
         }
 
         return (
-            <StyleRoot>
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
-                <p className={classes.join(' ')}>THIS IS WORKING</p>
+            <div className={classes.App}>
+
+                <p className={assignedClasses.join(' ')}>THIS IS WORKING</p>
                 <button
                     style={style}
                     onClick={ this.togglePersonsHandler }>
@@ -124,11 +116,10 @@ class App extends Component {
                 {persons}
 
             </div>
-            </StyleRoot>
         );
         // return React.createElement('div', {className: 'App'}, React ..)
     }
 }
 
 // Higher order component, wrapping and injecting functionality
-export default Radium(App);
+export default App;
