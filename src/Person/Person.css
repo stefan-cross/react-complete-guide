@@ -10,6 +10,9 @@
     text-align: center;
 }
 
-/*@media (min-width: ){*/
-    /*.Person*/
-/*}*/
+@media (min-width: 500px){
+    .Person {
+        width: 450px;
+        background-color: beige;
+    }
+}
