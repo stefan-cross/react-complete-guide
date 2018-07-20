@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import classes from './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 
 class App extends Component {
@@ -60,14 +61,17 @@ class App extends Component {
             persons = (
                 <div>
                     {this.state.persons.map((person, index) => {
-                        return <Person
+                        // ErrorBoundary is a high order component
+                        return <ErrorBoundary
+                            key={person.id}>
+                            <Person
                             click={ () => this.deletePersonHandler(index) }
                             name={person.name}
                             age={person.age}
                             // Key is used to enable react to efficiently read DOM and map changes from future to past state
-                            key={person.id}
                             changed={(event) => this.nameChangedHandler(event, person.id)}
                         />
+                        </ErrorBoundary>
                     })}
                 </div>
             );
