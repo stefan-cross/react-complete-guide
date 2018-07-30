@@ -20,6 +20,30 @@ class Persons extends Component {
     }
 
 
+    componentWillReceiveProps(nextProps) {
+        console.log("Personsjs Inside componentWillReceiveProps()", nextProps)
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("Personsjs Inside shouldComponentUpdate()", nextProps, nextState)
+        // This is cancel the update and re-rendering of the app dom
+        return false;
+
+        // Careful as nextProps.persons !== this.props.persons only does a shallow, not a deep comparison
+        //return nextProps.persons !== this.props.persons
+    }
+
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log("Personsjs Inside componentWillUpdate()", nextProps, nextState)
+    }
+
+    componentDidUpdate(nextProps, nextState) {
+        // Allowed to make side effects
+        console.log("Personsjs Inside componentDidUpdate()", nextProps, nextState)
+    }
+
+
     render() {
 
         console.log("Personsjs Inside render()")
