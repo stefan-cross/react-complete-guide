@@ -32,6 +32,13 @@ class Person extends Component {
                 <input type="text" onChange={this.props.changed} value={this.props.name}></input>
             </div>
         )
+
+        // Possible to return an array of jsx element, note commas and keys!
+        // return [
+        //     <p key="1" onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years of youth!</p>,
+        //     <p key="2">{this.props.children}</p>,
+        //     <input key="3" type="text" onChange={this.props.changed} value={this.props.name}></input>
+        // ]
     }
 };
 

@@ -1,15 +1,16 @@
 import React from 'react';
 
 import classes from './Cockpit.css';
+import Aux from '../../hoc/Aux';
 
 // Functional Component
 const cockpit = (props) => {
 
     const assignedClasses = [];
-    let btnClass = '';
+    let btnClass = classes.Button;
 
     if(props.showPersons) {
-        btnClass = classes.Red;
+        btnClass = [classes.Button, classes.Red].join(' ');
     }
 
     if(props.persons.length <= 1) {
@@ -20,7 +21,7 @@ const cockpit = (props) => {
     }
 
     return (
-        <div className={classes.Cockpit}>
+        <Aux>
             <h1>{ props.appTitle }</h1>
             <p className={assignedClasses.join(' ')}>THIS IS WORKING</p>
                 <button
@@ -28,7 +29,7 @@ const cockpit = (props) => {
                     onClick={ props.clicked }>
                     Toggle Person
                 </button>
-        </div>
+        </Aux>
     );
 }
 
