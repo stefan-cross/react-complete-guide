@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import classes from './Person.css';
 
-import WithClass from '../../../hoc/WithClass';
+import withClass from '../../../hoc/withClass';
+import Aux from '../../../hoc/Aux';
 
 class Person extends Component {
 
@@ -27,12 +28,12 @@ class Person extends Component {
         console.log("Personjs Inside render()")
 
         return (
-            <WithClass classes={classes.Person}>
+            <Aux>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years of youth!</p>
                 <p>{this.props.children}</p>
                 {/* the value now adds two way binding, console will error for other field without onChange added */}
                 <input type="text" onChange={this.props.changed} value={this.props.name}></input>
-            </WithClass>
+            </Aux>
         )
 
         // Possible to return an array of jsx element, note commas and keys!
@@ -44,4 +45,4 @@ class Person extends Component {
     }
 };
 
-export default Person;
+export default withClass(Person, classes.Person);
