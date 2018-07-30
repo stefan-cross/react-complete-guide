@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './Cockpit.css';
 
-
+// Functional Component
 const cockpit = (props) => {
 
     const assignedClasses = [];

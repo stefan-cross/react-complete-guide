@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import Person from './Person/Person';
 
-class Persons extends Component {
+// Use Pure if you know that updates might not be required, dont make everything pure, performance hit in comparing state
+// Place strategically!
+class Persons extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -24,14 +26,14 @@ class Persons extends Component {
         console.log("Personsjs Inside componentWillReceiveProps()", nextProps)
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("Personsjs Inside shouldComponentUpdate()", nextProps, nextState)
-        // This is cancel the update and re-rendering of the app dom
-        return false;
-
-        // Careful as nextProps.persons !== this.props.persons only does a shallow, not a deep comparison
-        //return nextProps.persons !== this.props.persons
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log("Personsjs Inside shouldComponentUpdate()", nextProps, nextState)
+    //
+    //     // Careful as nextProps.persons !== this.props.persons only does a shallow, not a deep comparison
+    //     return nextProps.persons !== this.props.persons ||
+    //         nextProps.changed !== this.props.changed ||
+    //         nextProps.clicked !== this.props.clicked;
+    // }
 
 
     componentWillUpdate(nextProps, nextState) {
