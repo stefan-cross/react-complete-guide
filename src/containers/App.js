@@ -5,13 +5,27 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
-    // Managed from inside the component, only available when extending component
-    state = {
-        persons: [
-            {id: 1, name: 'Olwen', age: 28},
-            {id: 2, name: 'Stefan', age: 29},
-        ],
-        showPersons: false
+    constructor(props) {
+        super(props);
+        console.log('Appjs inside constructor', props);
+        // State can be set in copnstructor in more modern apps es6
+        this.state = {
+            persons: [
+                {id: 1, name: 'Olwen', age: 28},
+                {id: 2, name: 'Stefan', age: 29},
+            ],
+            showPersons: false
+        }
+
+    }
+
+    componentWillMount() {
+        console.log("Appjs Inside componentWillMount()")
+    }
+
+
+    componentDidMount() {
+        console.log("Appjs Inside componentDidMount()")
     }
 
 
@@ -51,6 +65,8 @@ class App extends Component {
     };
 
     render() {
+
+        console.log("Appjs Inside render()")
 
         let persons = null;
 
